@@ -1,59 +1,114 @@
-# ControleDeMedicamentos
+# 🧠 MediMind - Sistema de Controle de Medicamentos
+<p align="center">
+  <img src="public/favicon.png" alt="MediMind" width="500">
+</p>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.14.
+O MediMind é uma aplicação web interativa e amigável projetada para o monitoramento de tratamentos de saúde e cronogramas de medicamentos. Desenvolvido com foco em acessibilidade e usabilidade, o sistema permite o cadastro e gerenciamento de medicamentos, vitaminas e suplementos.
 
-## Development server
+Além disso, a plataforma oferece acompanhamento visual dos horários de administração por meio de alertas coloridos, histórico automático de tomadas, sistema de gamificação por medalhas e persistência local dos dados, proporcionando uma experiência prática e intuitiva ao usuário.
 
-To start a local development server, run:
+# 🛠️ Extensões Recomendadas (VS Code)
 
-```bash
+Para obter a melhor experiência de desenvolvimento, recomenda-se instalar as seguintes extensões no Visual Studio Code:
+
+- Angular Language Service
+- Suporte ao Angular com autocompletar, navegação e validação de templates HTML.
+- TypeScript Hero ou JavaScript and TypeScript Nightly
+- Melhor gerenciamento de imports e recursos avançados do TypeScript.
+- Prettier - Code Formatter
+- Padronização automática da formatação do código.
+- Tailwind CSS IntelliSense (Opcional)
+- Recomendado caso sejam utilizados utilitários do Tailwind CSS.
+
+# 🚀 Como Executar o Projeto:
+
+Certifique-se de possuir instalado:
+
+# Ferramenta/Versão
+- Node.js	24.11.1
+- npm	11.6.2
+- Angular CLI	21.2.14
+- TypeScript	5.9.3
+- Git	2.52.0
+
+Caso não possua o Angular CLI instalado:
+
+npm install -g @angular/cli
+
+# 1. Clonar o Repositório
+
+git clone <URL_DO_REPOSITORIO>
+
+Ou, caso já possua os arquivos, navegue até a pasta do projeto:
+
+cd controle_de_medicamentos
+
+# 2. Instalar as Dependências
+
+Instale todas as bibliotecas necessárias:
+
+npm install
+
+Este comando criará a pasta node_modules e instalará automaticamente todas as dependências do projeto.
+
+# 3. Executar o Servidor de Desenvolvimento
+
+Para iniciar a aplicação localmente:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+# 4. Acessar o Sistema
 
-## Code scaffolding
+Após a compilação ser concluída com sucesso, abra o navegador e acesse:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+http://localhost:4200
 
-```bash
-ng generate component component-name
-```
+# 📁 Principais Tecnologias:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Tecnologia	Versão
+- Angular	21.2.16
+- Angular CLI	21.2.14
+- TypeScript	5.9.3
+- RxJS	7.8.2
+- Angular SSR	21.2.14
+- Vitest	4.1.8
 
-```bash
-ng generate --help
-```
+# 🏗️ Estrutura e Arquitetura:
 
-## Building
+- Framework Principal: Angular 21 utilizando Componentes Standalone.
+- Linguagem: TypeScript.
+- Armazenamento: LocalStorage (API nativa do navegador) para persistência local dos dados.
+- Estilização: CSS3 com identidade visual inspirada no setor HealthTech, utilizando uma paleta de cores voltada para acessibilidade e conforto visual.
+- Arquitetura: Organização modular dos componentes e separação entre interface e lógica de negócio.
 
-To build the project run:
+# ✨ Funcionalidades:
 
-```bash
-ng build
-```
+- Cadastro e gerenciamento de medicamentos;
+- Cadastro e gerenciamento de vitaminas;
+- Cadastro e gerenciamento de suplementos;
+- Sistema de autenticação;
+- Dashboard interativo;
+- Alertas visuais para horários de administração;
+- Histórico automático de tomadas;
+- Persistência local dos dados;
+- Sistema de gamificação por medalhas.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+# 📌 Observações
 
-## Running unit tests
+As dependências do projeto são gerenciadas pelos arquivos package.json e package-lock.json. Basta executar:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+npm install
 
-```bash
-ng test
-```
+para que todas as bibliotecas necessárias sejam instaladas automaticamente.
 
-## Running end-to-end tests
+# 👨‍💻 Autores
 
-For end-to-end (e2e) testing, run:
+Guilherme Leal
+João Vitor Melo
 
-```bash
-ng e2e
-```
+O projeto foi desenvolvido para a disciplina de Front-End do curso de Análise e Desenvolvimento de Sistemas.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+<p align="center">
+  <img src="public/medimind-login.png" alt="MediMind" width="250">
+</p>
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
