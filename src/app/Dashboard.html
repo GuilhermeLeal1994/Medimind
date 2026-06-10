@@ -1,0 +1,302 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-brand">
+      <span class="logo-icon">➕</span>
+      <h1>MediMind</h1>
+    </div>
+
+    <div class="header-controls">
+      <nav class="header-nav">
+        <button class="nav-link" [class.active-route]="abaAtiva === 'monitoramento'"
+          (click)="mudarAba('monitoramento')">
+          📋 Painel de Monitoramento
+        </button>
+
+        <button class="nav-link btn-shortcut-add" [class.active-route]="abaAtiva === 'cadastro'"
+          (click)="mudarAba('cadastro')">
+          ➕ Incluir nova medicação
+        </button>
+
+        <button class="nav-link" [class.active-route]="abaAtiva === 'destaques'" (click)="mudarAba('destaques')">
+          ⭐ Histórico & Medalhas
+        </button>
+      </nav>
+
+      <div class="header-right-group">
+        <div class="live-clock-container">
+          <span class="clock-label">Horário</span>
+          <div class="clock-time">{{ relogioDigital }}</div>
+        </div>
+
+        <button class="btn-logout" (click)="fazerLogout()" title="Encerrar Sessão">
+          Sair
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-content">
+
+    <ng-container *ngIf="abaAtiva === 'cadastro'">
+      <main class="form-section">
+        <h2>Cadastre seu medicamento, vitamina ou suplemento</h2>
+        <p>Configure alertas precisos de acordo com seu tratamento.</p>
+
+        <form (submit)="adicionarMedicamento($event)">
+          <div class="form-group">
+            <label for="nome">Nome do Medicamento</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: Amoxicilina, Dipirona" [(ngModel)]="novoNome"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="forma">Via de Administração</label>
+            <select id="forma" name="forma" [(ngModel)]="novaForma" required class="select-custom">
+              <option value="" disabled selected>Selecione a via...</option>
+              <option *ngFor="let opcao of opcoesFormas" [value]="opcao.valor">{{ opcao.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="intervalo">Intervalo de Tomada (em horas)</label>
+            <input type="number" id="intervalo" name="intervalo" placeholder="Ex: 8" [(ngModel)]="novoIntervalo" min="1"
+              required>
+          </div>
+
+          <div class="form-row-datetime">
+            <div class="form-group">
+              <label for="dataInicio">Data da 1ª Tomada</label>
+              <input type="date" id="dataInicio" name="dataInicio" [(ngModel)]="dataPrimeiraTomada" required>
+            </div>
+            <div class="form-group">
+              <label for="horaInicio">Hora da 1ª Tomada</label>
+              <input type="time" id="horaInicio" name="horaInicio" [(ngModel)]="horaPrimeiraTomada" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Data Final (Opcional)</label>
+            <input type="date" name="dataFim" [(ngModel)]="dataFimMedicamento">
+          </div>
+
+          <div class="form-group">
+            <label for="observacao">Observações / Instruções Especiais</label>
+            <textarea id="observacao" name="observacao" placeholder="Ex: Tomar em jejum, evitar tomar com leite, etc."
+              [(ngModel)]="novaObservacao" rows="3"
+              style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #ffffff; width: 100%; resize: vertical;"></textarea>
+          </div>
+
+          <div class="form-row-datetime">
+            <div class="form-group">
+              <label for="simbolo">Símbolo de Identificação</label>
+              <select id="simbolo" name="simbolo" [(ngModel)]="simboloEscolhido" class="select-custom">
+                <option *ngFor="let simp of opcoesSimbolos" [value]="simp.valor">{{ simp.label }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cor">Cor do Medicamento</label>
+              <input type="color" id="cor" name="cor" [(ngModel)]="corEscolhida"
+                style="height: 42px; padding: 2px; cursor: pointer;">
+            </div>
+          </div>
+
+          <div class="checkbox-container">
+            <label class="custom-checkbox">
+              <input type="checkbox" name="checkEmail" [(ngModel)]="checkEmail">
+              <span class="checkmark"></span> Lembrar por E-mail
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" name="checkSms" [(ngModel)]="checkSms">
+              <span class="checkmark"></span> Lembrar por SMS
+            </label>
+          </div>
+
+          <div class="error-msg" *ngIf="mensagemErro">⚠️ {{ mensagemErro }}</div>
+          <button type="submit" class="btn-adicionar">Adicionar à Rotina</button>
+        </form>
+      </main>
+    </ng-container>
+
+    <ng-container *ngIf="abaAtiva === 'monitoramento'">
+      <main class="list-section">
+        <h2>Painel de Monitoramento</h2>
+
+        <div class="empty-state" *ngIf="medicamentos.length === 0">
+          <p>Nenhum medicamento monitorado no momento.</p>
+          <span>Toque no botão "Incluir nova Medicação" acima para ativar o motor de ciclos.</span>
+        </div>
+
+        <div class="filtro-status-container" *ngIf="medicamentos.length > 0">
+          <button [class.ativo]="filtroStatus === 'todos'" (click)="filtroStatus = 'todos'">
+            📋 Todos ({{ medicamentos.length }})
+          </button>
+          <button [class.ativo]="filtroStatus === 'ativo'" (click)="filtroStatus = 'ativo'">
+            🟢 Ativos
+          </button>
+          <button [class.ativo]="filtroStatus === 'inativo'" (click)="filtroStatus = 'inativo'">
+            ⏸️ Pausados
+          </button>
+          <button [class.ativo]="filtroStatus === 'finalizado'" (click)="filtroStatus = 'finalizado'">
+            ✅ Finalizados
+          </button>
+        </div>
+
+        <div class="empty-state" *ngIf="medicamentos.length > 0 && medicamentosFiltrados.length === 0">
+          <p>Nenhum medicamento encontrado com este status.</p>
+          <span>Escolha outro filtro acima para visualizar seus registros.</span>
+        </div>
+
+        <div class="medicamentos-grid" *ngIf="medicamentosFiltrados.length > 0">
+          <div *ngFor="let med of medicamentosFiltrados" class="med-card"
+            [ngClass]="{'card-verde': med.statusVisual === 'verde', 'card-laranja': med.statusVisual === 'laranja', 'card-vermelho': med.statusVisual === 'vermelho'}">
+
+            <div class="card-header">
+              <span class="badge-interval">Repete de {{ med.intervaloHoras }}h em {{ med.intervaloHoras }}h</span>
+              <span class="badge-status-text">
+                {{ med.statusVisual === 'verde' ? 'No Prazo' : med.statusVisual === 'laranja' ? 'NA HORA!' : 'EM ATRASO' }}
+              </span>
+            </div>
+
+            <div class="card-body">
+              <div class="med-title-row">
+                <span class="med-emoji-icon" [style.backgroundColor]="med.corPersonalizada + '30'"
+                  [style.border]="'2px solid ' + med.corPersonalizada">
+                  {{ med.simboloPersonalizado || obterEmojiForma(med.forma) }}
+                </span>
+                <div>
+                  <h3>{{ med.nome }}</h3>
+                  <span class="sub-forma-text">{{ med.forma }}</span>
+                </div>
+                <div class="status-tratamento">
+                  <span *ngIf="med.status === 'ativo'" class="status-ativo">🟢 Ativo</span>
+                  <span *ngIf="med.status === 'inativo'" class="status-inativo">⏸️ Pausado</span>
+                  <span *ngIf="med.status === 'finalizado'" class="status-finalizado">✅ Finalizado</span>
+                </div>
+              </div>
+
+              <div *ngIf="med.Observacao" class="time-info-box" style="margin-top: 8px; background-color: #fdfdfd; border-color: #cbd5e1;">
+                <span class="info-label" style="color: #64748b;">Nota:</span>
+                <span class="info-value" style="font-weight: normal; font-size: 11px; color: #475569;">{{ med.Observacao }}</span>
+              </div>
+
+              <div class="time-info-box" *ngIf="med.status !== 'finalizado'">
+                <span class="info-label">Horário da próxima dose:</span>
+                <span class="info-value">{{ formatarDataBr(med.proximaTomada) }}</span>
+              </div>
+              <div class="time-info-box" *ngIf="med.status === 'finalizado'">
+                <span class="info-label">Tratamento encerrado em:</span>
+                <span class="info-value">{{ med.dataFim ? formatarDataBr(med.dataFim) : 'Data limite atingida' }}</span>
+              </div>
+
+              <div class="notif-badges">
+                <span *ngIf="med.lembrarEmail" class="badge-notif">✉️ E-mail</span>
+                <span *ngIf="med.lembrarSms" class="badge-notif">📱 SMS</span>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-tomar-action" *ngIf="med.statusVisual !== 'verde' && med.status === 'ativo'"
+                [disabled]="processandoClique" (click)="marcarComoTomado(med.id)">{{ processandoClique ? '⏳ Processando...' : '✅ Tomar' }}
+              </button>
+
+              <button class="btn-inativar" *ngIf="med.status === 'ativo'" (click)="inativarMedicamento(med.id)">
+                ⏸️ Pausar
+              </button>
+
+              <button class="btn-retomar" *ngIf="med.status === 'inativo'" (click)="abrirRetomada(med)">
+                🔄 Retomar
+              </button>
+
+              <button class="btn-excluir" (click)="excluirMedicamento(med.id)">
+                🗑️ Excluir
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </main>
+    </ng-container>
+
+    <ng-container *ngIf="abaAtiva === 'destaques'">
+      <div class="destaques-layout">
+
+        <section class="medalhas-section">
+          <h2>Suas Conquistas e Medalhas</h2>
+          <p>O sistema avalia sua constância médica em tempo real. Ganhe insígnias múltiplas vezes!</p>
+
+          <div class="medalhas-grid">
+            <div *ngFor="let medalha of medalhas" class="medalha-card"
+              [ngClass]="medalha.quantidade > 0 ? medalha.classe : 'medalha-bloqueada'">
+              <div class="medalha-icon-wrapper">
+                <span class="medalha-emoji">{{ medalha.icone }}</span>
+                <span class="medalha-multiplier" *ngIf="medalha.quantidade > 0">x{{ medalha.quantidade }}</span>
+              </div>
+              <div class="medalha-info">
+                <h3>{{ medalha.titulo }}</h3>
+                <p>{{ medalha.descricao }}</p>
+                <span class="medalha-status-label">
+                  {{ medalha.quantidade > 0 ? 'Conquistada ' + medalha.quantidade + 'x' : 'Bloqueada' }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="timeline-section">
+          <h2>Linha do Tempo Comportamental</h2>
+          <p>Histórico completo de ações e aderência ao tratamento.</p>
+
+          <div class="empty-state" *ngIf="historicoLogs.length === 0">
+            <p>Nenhuma atividade foi registrada na linha do tempo, adicione novos registros para visualizá-los aqui.</p>
+            <span>Quando você marcar medicamentos como tomados, as análises comportamentais aparecerão aqui.</span>
+          </div>
+
+          <div class="timeline" *ngIf="historicoLogs.length > 0">
+            <div *ngFor="let log of historicoLogs" class="timeline-item"
+              [ngClass]="{'item-pontual': log.statusNoMomento === 'Na Hora', 'item-atrasado': log.statusNoMomento === 'Com Atraso'}">
+              <div class="timeline-badge"></div>
+              <div class="timeline-card">
+                <span class="timeline-time">⏱️ {{ log.dataHora }}</span>
+                <h3>{{ log.nomeMedicamento }}</h3>
+                <p>Status da tomada:
+                  <strong class="status-tag">{{ log.statusNoMomento }}</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </ng-container>
+
+  </div>
+
+  <div class="modal-retomada" *ngIf="mostrarModalRetomada">
+    <div class="modal-content">
+      <h3>Retomar Tratamento</h3>
+      <p style="font-size: 14px; color: #666; margin-bottom: 15px;">
+        Medicamento: <strong>{{ medicamentoRetomando?.nome }}</strong>
+      </p>
+
+      <div class="form-group">
+        <label>Nova Data da 1ª Tomada</label>
+        <input type="date" [(ngModel)]="novaDataRetomada">
+      </div>
+
+      <div class="form-group" style="margin-top: 12px;">
+        <label>Novo Horário</label>
+        <input type="time" [(ngModel)]="novaHoraRetomada">
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-adicionar" (click)="confirmarRetomada()">
+          Confirmar
+        </button>
+        <button class="btn-excluir" (click)="mostrarModalRetomada = false" style="margin-top: 0;">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

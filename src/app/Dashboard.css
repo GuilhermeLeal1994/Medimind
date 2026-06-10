@@ -1,0 +1,911 @@
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+* {
+  box-shadow: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f6f9;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #2d3748;
+}
+
+/* ==========================================================================
+   HEADER TOTALMENTE RESPONSIVO (2 Linhas no Mobile / 1 Linha no PC)
+   ========================================================================== */
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.header-brand h1 {
+  font-size: 20px;
+  color: #0c5460;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.header-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  background: #edf2f7;
+  border: none;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a5568;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link.active-route {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+}
+
+.header-right-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.live-clock-container {
+  background: #1e293b;
+  color: #38bdf8;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 140px;
+}
+
+.clock-label {
+  font-size: 7px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.clock-time {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.btn-logout {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fee2e2;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   CONTEÚDO E ESTRUTURA FLUIDA (MOBILE-FIRST)
+   ========================================================================== */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.form-section h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.form-section p {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-row-datetime {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row-datetime .form-group {
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.form-group input,
+.select-custom {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+  width: 100%;
+}
+
+.form-group input:focus,
+.select-custom:focus {
+  border-color: #0ea5e9;
+}
+
+.checkbox-container {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #edf2f7;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+}
+
+.custom-checkbox input:checked~.checkmark {
+  background-color: #0ea5e9;
+  border-color: #0ea5e9;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked~.checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.btn-adicionar {
+  width: 100%;
+  background-color: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   GRID DE MEDICAMENTOS (Lista no Mobile / Prateleira lado-a-lado no PC)
+   ========================================================================== */
+.list-section {
+  flex: 1;
+  width: 100%;
+}
+
+.list-section h2 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.empty-state {
+  background: white;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #64748b;
+  width: 100%;
+}
+
+/* Mobile por padrão: Empilhado verticalmente */
+.medicamentos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.med-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 14px;
+  border-top: 8px solid #cbd5e1;
+  padding: 14px;
+  min-height: 250px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.med-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.status-tratamento {
+  margin-top: 2px;
+  font-size: 11px;
+}
+
+.status-ativo {
+  color: #198754;
+  font-weight: 600;
+}
+
+.status-inativo {
+  color: #fd7e14;
+  font-weight: 600;
+}
+
+.status-finalizado {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* Cores das Caixinhas baseadas no Status de Alerta */
+.card-verde {
+  border-top-color: #22c55e !important;
+  background-color: #ffffff !important;
+}
+
+.card-verde .badge-status-text {
+  background-color: #d1e7dd !important;
+  color: #0f5132 !important;
+}
+
+.card-laranja {
+  border-top-color: #f97316 !important;
+  background-color: #fffaf5 !important;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.card-laranja .badge-status-text {
+  background-color: #f97316 !important;
+  color: #ffffff !important;
+}
+
+.card-vermelho {
+  border-top-color: #e21c1c !important;
+  animation: pulsarAlerta 4s infinite ease-in-out;
+  /* Ativa o efeito piscante */
+}
+
+.card-vermelho .badge-status-text {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.badge-interval {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.badge-status-text {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.med-title-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.med-emoji-icon {
+  font-size: 26px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 2px;
+}
+
+.med-title-row h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #0f172a;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sub-forma-text {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.time-info-box {
+  background: #f8fafc;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px dashed #e2e8f0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.info-label {
+  font-size: 9px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  display: block;
+}
+
+.info-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.notif-badges {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.badge-notif {
+  font-size: 9px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: #475569;
+}
+
+.card-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #e2e8f0;
+  background: none;
+}
+
+.card-actions button {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.btn-tomar-action {
+  background-color: #22c55e;
+  color: white;
+}
+
+.btn-tomar-action:hover {
+  background-color: #16a34a;
+}
+
+.btn-inativar {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.btn-inativar:hover {
+  background-color: #cbd5e1;
+}
+
+.btn-retomar {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-retomar:hover {
+  background-color: #2563eb;
+}
+
+.btn-excluir {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+.btn-excluir:hover {
+  background-color: #fee2e2;
+}
+
+.filtro-status-container {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.filtro-status-container button {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filtro-status-container button:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+.filtro-status-container button.ativo {
+  background-color: #1e293b;
+  color: #38bdf8;
+  border-color: #1e293b;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   ABA DE DESTAQUES E MEDALHAS
+   ========================================================================== */
+.destaques-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.medalhas-section,
+.timeline-section {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.medalhas-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.medalha-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 6px solid #cbd5e1;
+}
+
+.medalha-bloqueada {
+  background-color: #f8fafc !important;
+  opacity: 0.5;
+}
+
+.med-ouro {
+  background-color: #fffbeb !important;
+  border-left-color: #fbbf24 !important;
+}
+
+.med-azul {
+  background-color: #f0f9ff !important;
+  border-left-color: #0ea5e9 !important;
+}
+
+.med-roxo {
+  background-color: #faf5ff !important;
+  border-left-color: #a855f7 !important;
+}
+
+.medalha-icon-wrapper {
+  position: relative;
+  background: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.medalha-emoji {
+  font-size: 22px;
+}
+
+.medalha-multiplier {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+.medalha-info h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.medalha-info p {
+  margin: 0 !important;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 15px;
+  border-left: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.timeline-badge {
+  position: absolute;
+  left: -21px;
+  top: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid white;
+}
+
+.item-pontual .timeline-badge {
+  background-color: #10b981 !important;
+}
+
+.item-atrasado .timeline-badge {
+  background-color: #ef4444 !important;
+}
+
+.timeline-card {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.timeline-time {
+  font-size: 11px;
+  color: #94a3b8;
+  display: block;
+}
+
+.status-tag {
+  font-weight: 700;
+}
+
+.item-pontual .status-tag {
+  color: #10b981 !important;
+}
+
+.item-atrasado .status-tag {
+  color: #ef4444 !important;
+}
+
+/* ==========================================================================
+   MODAL DE RETOMADA DE TRATAMENTO
+   ========================================================================== */
+.modal-retomada {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-top: 6px solid #0ea5e9;
+}
+
+.modal-content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.modal-buttons .btn-adicionar,
+.modal-buttons .btn-excluir {
+  margin-top: 0;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   ANIMACÕES KEYFRAMES (Globais)
+   ========================================================================== */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.01);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulsarAlerta {
+  0% {
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+    background-color: #ffffff;
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
+    background-color: #fff5f5;
+  }
+
+  100% {
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+    background-color: #ffffff;
+  }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES - RESPONSIVIDADE ADAPTATIVA (TABLETS E PC)
+   ========================================================================== */
+
+/* TABLETS (A partir de 768px de largura) */
+@media (min-width: 768px) {
+  .dashboard-header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 14px 24px;
+    gap: 0;
+  }
+
+  .header-brand {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .header-nav {
+    width: auto;
+  }
+
+  .header-right-group {
+    width: auto;
+    gap: 12px;
+  }
+
+  .nav-link,
+  .btn-logout {
+    padding: 8px 14px;
+  }
+
+  /* Os medicamentos assumem um Flexbox inteligente alinhado à esquerda e centralizado na tela */
+  .medicamentos-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 1020px;
+    /* Alinha perfeitamente até 3 colunas de 320px */
+    margin: 0 auto;
+  }
+
+  .med-card {
+    width: 320px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+/* COMPUTADORES (A partir de 1024px de largura) */
+@media (min-width: 1024px) {
+  .dashboard-content {
+    flex-direction: column;
+    /* Altera de row para column para o formulário e a lista ficarem um embaixo do outro */
+    align-items: center;
+    /* Centraliza horizontalmente tudo que estiver dentro do conteúdo */
+    gap: 30px;
+    padding: 24px;
+  }
+
+  .form-section {
+    width: 100%;
+    max-width: 500px;
+    /* Aumentamos um pouco a largura para ficar mais confortável para digitar no PC */
+    margin: 0 auto;
+    /* Garante a centralização perfeita */
+    position: relative;
+    /* Remove o 'sticky' antigo para ele rolar junto com a página */
+    top: 0;
+    /* Zera a posição do topo */
+  }
+
+  .destaques-layout {
+    flex-direction: row;
+    width: 100%;
+    max-width: 1020px;
+    /* Mantém as medalhas alinhadas com o tamanho da grid */
+    margin: 0 auto;
+  }
+
+  .medalhas-section {
+    flex: 4;
+  }
+
+  .timeline-section {
+    flex: 3;
+  }
+}
+
+.timeline-section {
+  flex: 3;
+}
+  

@@ -1,0 +1,44 @@
+<div class="login-wrapper">
+
+  <div class="hero-panel">
+    <div class="hero-content">
+      <img src="medimind-login.png" alt="MediMind Apresentação" class="img-banner">
+    </div>
+  </div>
+
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-icon">💊⏰</div>
+      <h1>MediMind</h1>
+      <p>Controle Inteligente de Medicamentos</p>
+    </div>
+
+    <form (submit)="executarLogin($event)">
+      <div class="input-group">
+        <label for="email">Digite seu E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="username" placeholder="exemplo@saude.com" required
+          [(ngModel)]="email">
+      </div>
+
+      <div class="input-group">
+        <label for="password">Digite sua Senha</label>
+        <input type="password" id="password" name="password" placeholder="Digite sua senha" required
+          autocomplete="current-password" [(ngModel)]="password">
+      </div>
+
+      @if (mensagemErro) {
+      <div class="error-message">
+        {{ mensagemErro }}
+      </div>
+      }
+
+      <button type="submit" class="btn-login">
+        Entrar
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <p>Primeiro acesso? Use qualquer e-mail e senha para testar.</p>
+    </div>
+  </div>
+</div>

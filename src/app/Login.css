@@ -1,0 +1,198 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #ffffff;
+}
+
+.login-card {
+  flex: 0 0 45%;
+  background: #ffffff;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(29, 53, 87, 0.1);
+  box-sizing: border-box;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+  color: #00a896; /* Verde Menta / Health Tech */
+  margin-bottom: 8px;
+}
+
+.login-header h1 {
+  color: #1d3557; /* Azul Escuro Confiança */
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.login-header p {
+  color: #627d98;
+  margin: 4px 0 0 0;
+  font-size: 0.95rem;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: #1d3557;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  border: 2px solid #bcccdc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1d3557;
+  transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #028090; /* Azul Esverdeado Dinâmico */
+}
+
+.error-message {
+  background-color: #ffe3e3;
+  color: #d63031;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  border-left: 4px solid #d63031;
+}
+
+.btn-login {
+  background-color: #00a896; /* Verde Menta Botão Principal */
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-login:hover {
+  background-color: #028090;
+}
+
+.btn-login:active {
+  transform: scale(0.98);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.login-footer p {
+  color: #9fb3c8;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.hero-panel {
+  flex: 0 0 50%;
+  background-color: #ffffff; /* Fundo branco para emendar com o fundo da imagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hero-content {
+  max-width: 550px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Classe para controlar a imagem */
+.img-banner {
+  max-width: 85%;
+  max-height: 80vh; /* Limita a altura para evitar que estoure em telas menores */;
+  object-fit: contain; /* Mantém a proporção perfeita da imagem */
+}
+
+/* TABLETS */
+@media (max-width: 1024px) {
+  .login-card {
+    width: 400px;
+  }
+}
+
+/* SMARTPHONES*/
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column;
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  /* Para o Smartphone, mudamos o painel para o topo e limitamos a altura dele */
+  .hero-panel {
+    width: 100%;
+    min-height: auto;
+    height: 250px; /* Define uma altura confortável para o topo do celular */
+    padding: 20px 20px 0 20px;
+  }
+
+  .img-banner {
+    max-height: 100%; /* Faz a imagem se ajustar perfeitamente dentro dos 250px */
+  }
+
+  /* Empurra o card um pouco para baixo ao invés de usar margem negativa */
+  .login-card {
+    width: calc(100% - 40px);
+    max-width: 450px;
+    margin: 20px auto; 
+    box-shadow: none; /* Deixa o visual flat, mais nativo de app mobile */
+  }
+}
+
+/* SMARTPHONES PEQUENOS */
+@media (max-width: 480px) {
+  .hero-panel {
+    height: 200px; /* Reduz um pouquinho em telas mini */
+  }
+
+  .login-card {
+    padding: 20px;
+  }
+
+  .logo-icon {
+    font-size: 2rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn-login {
+    padding: 12px;
+  }
+}
