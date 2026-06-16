@@ -64,7 +64,9 @@ Instalação das ferramentas
 1. Node.js e npm
 
 Baixe e instale a versão recomendada do Node.js pelo site oficial:
+```bash
 https://nodejs.org/
+```
 O npm é instalado automaticamente junto com o Node.js.
 Após a instalação, verifique:
 ```bash
@@ -74,39 +76,39 @@ npm -v
 2. Angular CLI
 
 Caso não possua o Angular CLI instalado, execute:
-
+```bash
 npm install -g @angular/cli
-
+```
 Para confirmar a instalação:
-
+```bash
 ng version
-
+```
 Caso seja necessário instalar uma versão específica:
-
+```bash
 npm install -g @angular/cli@21.2.14
+```
 3. TypeScript
-
 O TypeScript normalmente é instalado como dependência do projeto, mas também pode ser instalado globalmente:
-
+```bash
 npm install -g typescript
-
+```
 Para verificar:
-
+```bash
 tsc -v
-
+```
 Ou para instalar a versão recomendada:
-
+```bash
 npm install -g typescript@5.9.3
+```
 4. Git
-
 Faça o download no site oficial:
-
+```bash
 https://git-scm.com/downloads
-
+```
 Após a instalação, verifique:
-
+```bash
 git --version
-
+```
 ---
 
 ## 1. Clonar o Repositório
