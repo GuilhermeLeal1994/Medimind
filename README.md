@@ -8,6 +8,28 @@ O **MediMind** é uma aplicação web interativa e amigável projetada para o mo
 
 Além disso, a plataforma oferece acompanhamento visual dos horários de administração por meio de alertas coloridos, histórico automático de tomadas, sistema de gamificação por medalhas e persistência local dos dados, proporcionando uma experiência prática e intuitiva ao usuário.
 
+# Site publicado para usuário testar:
+https://medimind-pi.vercel.app/
+
+* ## ⚠️ Armazenamento de Dados
+Atualmente, este projeto utiliza o **LocalStorage do navegador** para armazenar as informações dos usuários, medicamentos e demais dados da aplicação.
+
+### Importante
+
+- Os dados são armazenados apenas no dispositivo e navegador em que a aplicação está sendo utilizada.
+- Não há sincronização entre dispositivos ou navegadores.
+- A limpeza dos dados do navegador (cache, cookies ou armazenamento local) pode resultar na perda das informações salvas.
+- Esta implementação foi adotada para fins de desenvolvimento, demonstração e testes.
+
+### Futuras Atualizações
+
+Está prevista a implementação de um **backend dedicado**, que permitirá:
+- Persistência segura dos dados;
+- Autenticação de usuários;
+- Sincronização entre diferentes dispositivos;
+- Maior confiabilidade e escalabilidade da aplicação.
+
+> **Atenção:** A versão atual não deve ser utilizada para armazenar informações importantes ou críticas, pois os dados podem ser perdidos.
 ---
 
 # 🛠️ Extensões Recomendadas (VS Code)
