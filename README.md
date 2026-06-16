@@ -25,21 +25,87 @@ Para obter a melhor experiência de desenvolvimento, recomenda-se instalar as se
 
 ## Pré-requisitos
 
-Certifique-se de possuir instalado:
+Antes de executar o projeto, certifique-se de que as seguintes ferramentas estão instaladas em sua máquina:
 
-| Ferramenta  | Versão  |
-| ----------- | ------- |
-| Node.js     | 24.11.1 |
-| npm         | 11.6.2  |
-| Angular CLI | 21.2.14 |
-| TypeScript  | 5.9.3   |
-| Git         | 2.52.0  |
+| Ferramenta  | Versão Recomendada  |
+| ----------- | ------------------- |
+| Node.js     |     24.11.1         |
+| npm         |     11.6.2          |
+| Angular CLI |     21.2.14         |
+| TypeScript  |     5.9.3           |
+| Git         |     2.52.0          |
 
 Caso não possua o Angular CLI instalado:
 
 ```bash
 npm install -g @angular/cli
 ```
+Verificando as versões instaladas
+
+Abra o terminal e execute os seguintes comandos:
+
+node -v
+npm -v
+ng version
+tsc -v
+git --version
+
+O resultado deverá ser semelhante a:
+
+```bash
+v24.11.1
+11.6.2
+Angular CLI: 21.2.14
+Version 5.9.3
+git version 2.52.0
+```
+
+Instalação das ferramentas
+1. Node.js e npm
+
+Baixe e instale a versão recomendada do Node.js pelo site oficial:
+https://nodejs.org/
+O npm é instalado automaticamente junto com o Node.js.
+Após a instalação, verifique:
+```bash
+node -v
+npm -v
+```
+2. Angular CLI
+
+Caso não possua o Angular CLI instalado, execute:
+
+npm install -g @angular/cli
+
+Para confirmar a instalação:
+
+ng version
+
+Caso seja necessário instalar uma versão específica:
+
+npm install -g @angular/cli@21.2.14
+3. TypeScript
+
+O TypeScript normalmente é instalado como dependência do projeto, mas também pode ser instalado globalmente:
+
+npm install -g typescript
+
+Para verificar:
+
+tsc -v
+
+Ou para instalar a versão recomendada:
+
+npm install -g typescript@5.9.3
+4. Git
+
+Faça o download no site oficial:
+
+https://git-scm.com/downloads
+
+Após a instalação, verifique:
+
+git --version
 
 ---
 
