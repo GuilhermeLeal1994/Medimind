@@ -210,11 +210,11 @@ para que todas as bibliotecas necessárias sejam instaladas automaticamente.
 
 ---
 
-# 👨‍💻 Autores
+# 🎓 Alunos Participantes
 
-**Guilherme Leal**
+👨🏻‍💻 *Guilherme Leal de Deus GitHub: https://github.com/GuilhermeLeal1994 RA: 25216067-2*
 
-**João Vitor Melo**
+👨🏻‍💻 *João Vitor Figueiredo GitHub: https://github.com/JoaoVFigueiredo RA: 25340355-3*
 
 Projeto desenvolvido para a disciplina de Front-End do curso de Análise e Desenvolvimento de Sistemas.
 
